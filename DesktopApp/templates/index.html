@@ -1,3 +1,4 @@
+<!--
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -24,6 +25,8 @@
             <a href="{{ url_for('Register_Page')}}">Register</a>
         </nav>
     </div>
+    
+    
 
     <div class="mainview">
     
@@ -72,5 +75,131 @@
 
     </div>
     <script src="{{ url_for('static', filename='js/index.js') }}"></script>
+</body>
+</html>
+-->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ADMIN - VoidDocs</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/index.css') }}">
+</head>
+<body>
+    <div class="top_bar1">
+        <div class="ebox">
+            <img class="emblem" src="https://upload.wikimedia.org/wikipedia/commons/5/55/Emblem_of_India.svg"></img>
+            <div class="vlogo">
+                <span class="vo">VO</span>
+                <span class="id">ID</span>
+                <span class="docs">-DOCS</span>
+            </div>
+            <div class="vlogo"></div>
+        </div>
+        <div class="sbox">
+            <div class="s1">National Level Blockchain</div>
+            <div class="s2">Document Protocol System</div>
+        </div>
+        <div class="cbox">
+            <div class="cname">RedCloud</div>
+            <div class="clogo"></div>
+        </div>
+    </div>
+
+    <div class="top_bar2">
+        <div class="rbox">
+            <span class="runner">Auditable, immutable, inviolable Blockchain&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Decentralized Document storage&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Highest Level Security</span>
+        </div>
+        <div class="trbox">
+            <div class="hbox">
+                <img class="home_img" src="{{ url_for('static', filename='src/home.png') }}"></img>
+            <div class="lbox">
+                <div class="lang"></div>
+            </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="empty"></div>
+    <div class="main1">
+        <div class="talking1">
+            <div class="T1">
+                <img class="banner" src="{{ url_for('static', filename='src/banner2.png') }}">
+            </div>
+            <div class="T2">
+                <div class="T2a" style="align-items: center;">
+                    <div class="T2a1">
+                        <img class="T2logo" src="{{ url_for('static', filename='src/list.png') }}"></img>
+                        <div class="T2txt">
+                            <div class="txtH">Send Documents Securely:</div>
+                            <div class="txtp">Initiate and encrypt official documents via blockchain.</div>
+                        </div>
+                    </div>
+                    <div class="T2a1">
+                        <img class="T2logo" style="height: 70%; width: 20%;" src="{{ url_for('static', filename='src/time.png') }}"></img>
+                        <div class="T2txt">
+                            <div class="txtH">Track Document History:</div>
+                            <div class="txtp">View the permanent, unchangeable record (transaction log) of every document's actions.</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="T2a">
+                    <div class="T2a1">
+                        <img class="T2logo" style="height: 70%; width: 20%;" src="{{ url_for('static', filename='src/close.png') }}"></img>
+                        <div class="T2txt">
+                            <div class="txtH">Revoke Official Status:</div>
+                            <div class="txtp">View the permanent, unchangeable record (transaction log) of every document's actions.</div>
+                        </div>
+                    </div>
+                    <div class="T2a1">
+                        <img class="T2logo" style="height: 70%; width: 20%;" src="{{ url_for('static', filename='src/clip.png') }}"></img>
+                        <div class="T2txt">
+                            <div class="txtH">Manage Document Properties:</div>
+                            <div class="txtp">Instantly see all pending, completed, and expired signature requests.</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="form-box">
+            <div class="lg1">
+                <div class="img_con">
+                    <img class="log_logo" src="{{ url_for('static', filename='src/image.png') }}"></img>
+                </div>
+                <div class="log_title">Administrator Login</div>
+            </div>
+            <form class="" action="/Login_Admin" method="post">
+                <label for="user_id">ID Number</label>
+                <input placeholder="user ID" type="text" id="user_id" name="user_id" required>
+
+                <label for="password">Password</label>
+                <input placeholder="password" type="password" id="password" name="password" required>
+                <div class="sbtn_con">
+                    <button type="submit">Login</button>
+                </div>
+            </form>
+            <p class="register-link">New admin? <a href="{{ url_for('Register_Page')}}">Register here</a></p>
+        </div>
+    </div>
+
+    
 </body>
 </html>
