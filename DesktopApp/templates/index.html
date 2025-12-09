@@ -1,100 +1,3 @@
-<!--
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>VOID-Docs ADMIN</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/index.css') }}">
-</head>
-<body>
-    
-
-    <div class="top_bar">
-        <div class="logo">
-            <span class="vo">VO</span>
-            <span class="id">ID</span>
-            <span class="docs">-DOCS</span>
-        </div>
-        <img class="emblem" src="https://upload.wikimedia.org/wikipedia/commons/5/55/Emblem_of_India.svg" alt="">
-        <nav class="nav_links">
-            <a href="{{ url_for('Login_Page')}}">Login</a>
-            <a href="{{ url_for('Register_Page')}}">Register</a>
-        </nav>
-    </div>
-    
-    
-
-    <div class="mainview">
-    
-        <div class="info-section" id="features">
-            <div class="welcome">ADMINISTRATOR CONTROL</div>
-            <p class="hero-slogan">Secure portal for authorized government officials and staff.</p>
-            
-            <div class="privileges">
-                <h3>Admin Privileges:</h3>
-                <ul>
-                    <li>Upload and issue new official documents to citizens.</li>
-                    <li>Send and manage document signature requests.</li>
-                    <li>Verify and attest citizen-uploaded documents.</li>
-                    <li>Access and review secure transaction logs.</li>
-                </ul>
-            </div>
-        </div>
-
-        <div class="cbox" id="get_started">
-            <h2 class="section-title">GET STARTED</h2>
-            
-            <a class="rlink" href="{{ url_for('Register_Page')}}">
-                <div class="reg_box">
-                    <div class="symb">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 24 24">
-                            <path fill="currentColor" d="M11.5 16.5h1v-4h4v-1h-4v-4h-1v4h-4v1h4v4ZM4 20V4h16v16H4Zm1-1h14V5H5v14Zm0 0V5v14Z"/>
-                        </svg>
-                    </div>
-                    <div class="reg">Register New Admin</div>
-                    <div class="desc">First-time administrator setup.</div>
-                </div>
-            </a>
-            
-            <a class="rlink" href="{{ url_for('Login_Page')}}">
-                <div class="reg_box">
-                    <div class="symb">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 1024 1024">
-                            <path fill="currentColor" d="M532.528 661.408c-12.512 12.496-12.513 32.752-.001 45.248c6.256 6.256 14.432 9.376 22.624 9.376s16.368-3.12 22.624-9.376l189.008-194L577.775 318.64c-12.496-12.496-32.752-12.496-45.248 0c-12.512 12.496-12.512 32.752 0 45.248l115.744 115.76H31.839c-17.68 0-32 14.336-32 32s14.32 32 32 32h618.448zM960.159 0h-576c-35.36 0-64.017 28.656-64.017 64v288h64.432V103.024c0-21.376 17.344-38.72 38.72-38.72h496.704c21.408 0 38.72 17.344 38.72 38.72l1.007 818.288c0 21.376-17.311 38.72-38.72 38.72H423.31c-21.376 0-38.72-17.344-38.72-38.72V670.944l-64.432.08V960c0 35.344 28.656 64 64.017 64h576c35.344 0 64-28.656 64-64V64c-.016-35.344-28.672-64-64.016-64z"/>
-                        </svg>
-                    </div>
-                    <div class="log">Admin Login</div>
-                    <div class="desc">Access the secure portal.</div>
-                </div>
-            </a>
-        </div>
-
-    </div>
-    <script src="{{ url_for('static', filename='js/index.js') }}"></script>
-</body>
-</html>
--->
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -196,6 +99,7 @@
                     <button type="submit">Login</button>
                 </div>
             </form>
+            <div class = "msg">{{message}}</div>
             <p class="register-link">New admin? <a href="{{ url_for('Register_Page')}}">Register here</a></p>
         </div>
     </div>

@@ -19,7 +19,7 @@
             <span class="docs">-DOCS</span>
         </div>
         <nav class="nav_links">
-            <a href="{{ url_for('Login_Page')}}">Login</a>
+            <a href="{{ url_for('Index')}}">Login</a>
         </nav>
     </div>
 
@@ -39,11 +39,11 @@
 
                 <button type="submit">Register</button>
             </form>
-            <p class="login-link">Already have an account? <a href="{{ url_for('Login_Page')}}">Login here</a></p>
+            <p class="login-link">Already have an account? <a href="{{ url_for('Index')}}">Login here</a></p>
         </div>
 
     </div>
-    <script src="{{ url_for('static', filename='js/index.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/register.js') }}"></script>
     
 </body>
 </html>

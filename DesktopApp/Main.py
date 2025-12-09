@@ -20,11 +20,6 @@ def index():
 @app.route('/Index')
 def Index():
     return render_template('index.html')
-    
-
-@app.route('/Login_Page', methods=['POST', 'GET'])
-def Login_Page():
-    return render_template('Login.html')
 
 
 @app.route('/Register_Page', methods=['POST', 'GET'])
@@ -45,9 +40,9 @@ def Login_Admin():
             session['user_id'] = user_id
             return render_template('Home.html')
         else:
-            return render_template('Login.html', message=msg)
+            return render_template('index.html', message=msg)
     
-    return render_template('Login.html')
+    return render_template('index.html')
 
 
 @app.route('/Register_Admin', methods=['GET', 'POST'])
@@ -111,7 +106,7 @@ def Register_Admin():
 @app.route('/Home')
 def Home():
     if 'user_id' not in session:
-        return redirect(url_for('Login_Page'))
+        return redirect(url_for('index'))
     return render_template('Home.html')
 
 
