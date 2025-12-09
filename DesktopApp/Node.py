@@ -2,96 +2,120 @@ import socket
 import threading
 import time
 import json
+import sys
 
 class P2PClient:
-    def __init__(self, server_ip):
+    def __init__(self, server_ip, node_name=None):
         self.server_ip = server_ip
         self.server_port = 5000
+        self.node_id = node_name or f"Node_{socket.gethostname()}_{int(time.time())}"
         self.peers = []
         self.is_running = False
-        self.node_id = f"{socket.gethostname()}_{int(time.time())}"
         
-    def send(self, ip, msg):
-        """Send message to specific IP"""
+    def send(self, msg_data):
+        """Send message to server (gets broadcast to all)"""
         try:
             sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-            sock.settimeout(3)
-            sock.connect((ip, self.server_port))
-            sock.sendall(json.dumps({"node_id": self.node_id, "msg": msg}).encode())
+            sock.settimeout(5)
+            sock.connect((self.server_ip, self.server_port))
+            sock.sendall(json.dumps(msg_data).encode())
             sock.close()
             return True
-        except:
+        except Exception as e:
+            print(f"[ERROR] Send failed: {e}")
             return False
     
     def listen(self):
-        """Listen for incoming connections"""
+        """Listen for incoming broadcast messages"""
         sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         sock.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
         sock.bind(('0.0.0.0', self.server_port))
-        sock.listen(5)
-        print(f"[{self.node_id}] Listening on port {self.server_port}")
+        sock.listen(10)
+        print(f"[{self.node_id}] 📡 Listening on port {self.server_port}")
         
         while self.is_running:
             try:
                 conn, addr = sock.accept()
-                threading.Thread(target=self.handle_connection, args=(conn, addr), daemon=True).start()
+                threading.Thread(target=self.handle_broadcast, args=(conn, addr), daemon=True).start()
             except:
-                break
-        sock.close()
+                if self.is_running:
+                    print(f"[{self.node_id}] Listen error, retrying...")
+                time.sleep(1)
     
-    def handle_connection(self, conn, addr):
-        """Handle single connection"""
+    def handle_broadcast(self, conn, addr):
+        """Handle incoming broadcast message"""
         try:
-            data = conn.recv(1024).decode()
+            data = conn.recv(4096).decode()
             msg_data = json.loads(data)
             sender_id = msg_data.get("node_id")
+            sender_ip = msg_data.get("sender_ip")
             msg = msg_data.get("msg")
             
-            print(f"[{self.node_id}] Received from {addr}: {msg}")
+            # Skip own messages and server control messages
+            if sender_id == self.node_id or sender_id == "SERVER":
+                return
             
-            if msg == "Add_Me":
-                self.peers.append(addr[0])
-                print(f"[{self.node_id}] Added peer: {addr[0]}")
-                conn.sendall(json.dumps({"node_id": self.node_id, "msg": "Added_You"}).encode())
+            print(f"\n📨 [{self.node_id}] <- {sender_id}@{sender_ip}: {msg}")
             
-            elif msg == "Online_Check":
-                conn.sendall(json.dumps({"node_id": self.node_id, "msg": "Im_Online"}).encode())
-                
         except:
             pass
         finally:
             conn.close()
     
     def first_connect(self):
-        """Connect to server and get added"""
-        print(f"[{self.node_id}] Connecting to server {self.server_ip}")
-        for _ in range(10):  # Retry 10 times
-            if self.send(self.server_ip, "Add_Me"):
-                time.sleep(1)
-                break
+        """Register with server"""
+        print(f"[{self.node_id}] 🔗 Connecting to {self.server_ip}...")
+        for attempt in range(15):
+            if self.send({"node_id": self.node_id, "msg": "Add_Me"}):
+                print(f"[{self.node_id}] ✅ Connected to network!")
+                return True
+            print(f"[{self.node_id}] Retry {attempt+1}/15...")
             time.sleep(2)
+        return False
     
     def heartbeat(self):
-        """Send heartbeat to server"""
+        """Keep alive"""
         while self.is_running:
-            self.send(self.server_ip, "Online_Check")
-            time.sleep(30)  # Every 30 seconds
+            self.send({"node_id": self.node_id, "msg": "Online_Check"})
+            time.sleep(30)
+    
+    def interactive_chat(self):
+        """Command line chat"""
+        print(f"\n[{self.node_id}] 💬 Chat ready! Type messages (or 'quit'):")
+        while self.is_running:
+            try:
+                msg = input(f"[{self.node_id}] > ").strip()
+                if msg.lower() == 'quit':
+                    break
+                if msg:
+                    self.send({"node_id": self.node_id, "msg": msg})
+            except KeyboardInterrupt:
+                break
     
     def start(self):
         self.is_running = True
+        
+        # Start listener first
         threading.Thread(target=self.listen, daemon=True).start()
-        threading.Thread(target=self.first_connect, daemon=True).start()
+        time.sleep(1)
+        
+        # Connect to server
+        if not self.first_connect():
+            print(f"[{self.node_id}] ❌ Failed to connect to server!")
+            return
+        
+        # Start heartbeat
         threading.Thread(target=self.heartbeat, daemon=True).start()
-        print(f"[{self.node_id}] Client started")
+        
+        # Start chat
+        self.interactive_chat()
+        
+        self.is_running = False
 
-# Usage
 if __name__ == "__main__":
-    client = P2PClient("172.16.44.187")  # Server IP
+    if len(sys.argv) != 2:
+        print("Usage: python client.py <server_ip>")
+        sys.exit(1)
+    
+    client = P2PClient(sys.argv[1])
     client.start()
-    try:
-        while True:
-            time.sleep(1)
-    except KeyboardInterrupt:
-        client.is_running = False
-
-
