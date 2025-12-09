@@ -28,17 +28,68 @@
 
 ---
 
-<div align="center" style="background:#000; padding:20px; border-radius:12px; border:1px solid #ff3c3c;">
+<div align="left" style="background:#000; padding:20px; border-radius:12px; border:1px solid #ff3c3c;">
 
 <h2 style="color:#ff3c3c;">🚨 Problem Statement</h2>
 
 <p style="font-size:16px; color:#ddd; max-width:800px; text-align:center; line-height:1.6;">
-India’s document management systems still rely on centralized verification models,
-leading to <b>forgery, tampering, delays, and massive data leaks.</b><br><br>
-<b style="color:#ff3c3c;">VOID DOCS</b> introduces a next-generation framework that
-combines <b>Blockchain immutability</b> with <b>AI intelligence</b> to create
-a secure, decentralized, and instantly verifiable record system — ensuring
-<b>authenticity, privacy, and trust</b> in every document transaction.
+# VOID-DOCS: Decentralized Property Registry for India 🇮🇳
+
+
+**45-day RTO → 6-minute digital approval | 7,200x faster | 1.4B Indians empowered**
+
+## **📊 CURRENT STATUS QUO**
+India's digital identity and property documentation ecosystem relies heavily on centralized platforms like DigiLocker, Aadhaar-linked records, and paper-based registries managed by government portals and land revenue offices. These systems store over 1.4 billion Aadhaar IDs and millions of property deeds, enabling basic e-verification for services like loans, travel, and real estate transactions. Interoperability exists through APIs with banks and UIDAI, but it remains fragmented across state-level revenue departments, leading to a patchwork of PDF uploads, manual stamps, and siloed databases that promise efficiency yet perpetuate outdated workflows.
+
+## **🚨 PROBLEMS FACED**
+Centralized storage creates single points of failure, with frequent data breaches—like the 2023 Aadhaar leak exposing millions—affecting trust and exposing users to forgery via fake deeds or tampered IDs, costing billions in disputes annually. Verification drags on for weeks through bureaucratic layers, RTO visits, and notary chains, delaying property sales by 30-60 days and inflating costs by 5-10% for MSMEs and citizens. Individuals lack sovereign control, as data silos deny portable ownership—once uploaded, citizens can't revoke access or prove authenticity without intermediaries, fueling black-market fraud and exclusion for rural holders without digital literacy.
+
+## **💡 OUR SOLUTION**
+VOID-DOCS is a lightweight, decentralized blockchain platform built on Python nodes with FastAPI backend and React Native frontend, granting users true sovereign control via self-hosted wallets for immutable document storage and verification. Scan a QR to instantly prove property deeds or IDs without intermediaries—95% faster verification, tamper-proof via on-chain hashing, and interoperable across banks/RTOs with zero-knowledge proofs for privacy. Deployable in hackathon hours with live demo, it eliminates forgery simply by distributing control, streamlines bureaucracy efficiently for all, and empowers 1.4B Indians with secure ownership.
+
+---
+
+## **🛠️ TECH STACK**
+
+| Layer | Technology | Purpose |
+|-------|------------|---------|
+| Frontend | HTML + VANILLA + CSS + JavaScript | Citizen/RTO mobile apps |
+| Backend | Python FastAPI | API gateway + node routing |
+| Blockchain | **Akari (Custom)** | Low-gas subsidiary servers |
+| Storage |  MongoDB | Encrypted fragments + indexes |
+| Privacy | **Zero-Knowledge Proofs** | Verify without revealing |
+| AI | **Gemini** | Document insights + classification |
+| Security | RSA + SHA256 + EdDSA | End-to-end encryption |
+
+## **🏗️ ARCHITECTURE**
+# DATA FLOW
+1. P1 APP → Uploads 7-doc bundle → FastAPI Gateway
+   ↓ (Routes by GPS → Mumbai Node)
+2. MUMBAI NODE → Creates Block #4567 (3KB bundle hash)
+   ↓ (Gossip Protocol → 10s sync)
+3. DELHI/CHENNAI NODES → Validate → Consensus ✓
+4. RTO DASHBOARD → P1 OCR + Multi-sig approve
+5. AKARI SMART CONTRACT → Auto-mint P2 ownership
+6. P2 APP → QR scan → ZKP verify (3s) ✓
+
+# 3 TIER ARCHITECTURE SYSTEM
+# TIER-1: CLIENT LAYER
+• Jai/Fawwaz phones → GPS auto-routing
+• QR Scanner → ZKP proofs (privacy)
+• Offline mode → Bluetooth mesh sync
+• Biometric wallet → Sovereign keys
+
+# TIER-2: API GATEWAY
+• Routes uploads → Nearest node (Mumbai/Delhi/Chennai)
+• 5-Layer auth → Govt APIs + OCR checks
+• RTO dashboard → Multi-sig endpoints
+• Legacy bootstrap → 70% unrecorded land
+
+# TIER-3: DATA LAYER (DISTRIBUTED STORAGE)
+• Akari Blockchain → 3KB hash blocks (700 RTO nodes)
+• MongoDB → Property indexes (sharded by state)
+• Gossip Protocol → 10s national consensus
+
 </p>
 
 </div>
@@ -60,9 +111,6 @@ Every document is converted into a <b>unique SHA-256 hash</b> and stored on Akar
 <li><b style="color:#ff3c3c;">🧠 Gemini AI Integration:</b>  
 Gemini enhances document processing through <b>intelligent tagging</b>, metadata extraction, and Q-A-based content assistance — all while preserving data privacy.</li>
 
-<li><b style="color:#ff3c3c;">☁️ AWS Cloud Deployment:</b>  
-VOID DOCS uses <b>Amazon S3</b> for secure file storage and <b>EC2</b> for scalable backend hosting — ensuring availability, encryption, and reliability.</li>
-
 <li><b style="color:#ff3c3c;">⚡ Fast Verification:</b>  
 Hash-based verification allows instant document validation without re-uploading the file — reducing verification time to seconds.</li>
 
@@ -76,61 +124,4 @@ Our backend uses <b>Flask APIs</b> for logic and <b>MongoDB</b> for structured m
 ---
 
 ---
-
-## 🧩 System Architecture
-
-```mermaid
-flowchart TD
-    A[UserInterface] --> B[Flask API Layer<br/>Handles uploads & authentication]
-    B --> C[Akari Blockchain<br/>Stores SHA-256 hashes & timestamps]
-    C --> D[AWS (S3 + EC2) + MongoDB<br/>Encrypted storage & scalability]
-    D --> E[Gemini AI Module<br/>Performs metadata extraction, tagging & Q&A]
-
-## ´ Core Modules  
-**Akari Blockchain:** Lightweight blockchain storing only file hashes & timestamps â€” ensures tamper-proof verification.  
-**Gemini AI:** AI module for document summarization, metadata extraction & question answering.  
-**AWS Integration:** S3 for encrypted file storage, EC2 for backend hosting, IAM for access control.  
-
----
-
-## ´ Team Akatsuki  
-| Name | Role | Email |
-|------|------|-------|
-| Jai Kishore N H | Team Head | jaikishore.n2025@vitstudent.ac.in |
-| Lalith Adhithiya Saravanan | Backend Lead | lalith.adhithya2025@vitstudent.ac.in |
-| Fawwaz Ahamed F | Frontend & AI | fawwazahamed.f2025@vitstudent.ac.in |
-| Joash Mathew Jiju | Cloud & Blockchain | joash.mathewjiju2025@vitstudent.ac.in |
-
----
-
-## 🔴 Why We Used Blockchain (Akari)
-
-We implemented our own blockchain system — **Akari** — to make document verification **trustless, transparent, and tamper-proof**.
-
-Traditional document systems rely on centralized databases that can be:
-- Altered or deleted by insiders  
-- Compromised by unauthorized access  
-- Lost due to server or storage failure  
-
-**Blockchain fixes this by design:**
-
-| Problem | Blockchain Solution |
-|----------|--------------------|
-| Document forgery or alteration | Each file’s hash is stored in a block — tampering changes the hash, instantly detected. |
-| Centralized trust issues | Distributed ledger — verification doesn’t rely on any single authority. |
-| Lack of authenticity proof | Time-stamped, cryptographically linked blocks provide verifiable record history. |
-| Data loss or corruption | Redundant ledger across nodes ensures persistence and recovery. |
-
-**Akari Blockchain** stores:
-- Document hash (SHA-256)  
-- Timestamp  
-- Owner metadata  
-- Previous block hash  
-
-This guarantees **immutability, transparency, and verification** — without storing the actual document, protecting privacy.
-
-> ✅ **In short:** Blockchain removes forgery, builds trust, eliminates intermediaries, and keeps records permanently verifiable.
-
----
-
 
