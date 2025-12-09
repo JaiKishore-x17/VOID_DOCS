@@ -94,32 +94,26 @@
 
                     try {
                         // ... MOCK API CALL ...
-                        const mockServerFetch = (id) => {
-                            return new Promise((resolve, reject) => {
-                                const mockDb = {
-                                    "user123": { name: "Ravi K. Sharma", publicKey: "0x1aB...c3D" },
-                                    "user456": { name: "Priya Singh", publicKey: "0x4eF...g5H" },
-                                    "admin99": { name: "Admin User", publicKey: "0x9iJ...k7L" }
-                                };
-                                
-                                setTimeout(() => { // Simulate network delay
-                                    if (mockDb[id]) {
-                                        resolve({ ok: true, json: () => mockDb[id] });
-                                    } else {
-                                        reject(new Error("User not found in database."));
-                                    }
-                                }, 1000);
-                            });
+                        const fetchUserFromServer = async (userId) => {
+                            const response = await fetch(`/add_auth_user/${encodeURIComponent(userId)}`);
+                            if (!response.ok) {
+                                // You can parse error JSON too if you want
+                                throw new Error("User not found.");
+                            }
+                            const user = await response.json(); // { name, publicKey }
+                            return user;
                         };
+
+                        // usage:
+                        const user = await fetchUserFromServer(userId);
+                        console.log(user.name, user.publicKey);
                         
-                        const response = await mockServerFetch(userId);
-                        if (!response.ok) throw new Error("User not found.");
-                        
-                        const user = response.json();
                         // --- END MOCK ---
                         
                         // Add to recipients array
                         const recipientData = { id: userId, name: user.name, publicKey: user.publicKey };
+                        
+                        
                         recipients.push(recipientData);
                         
                         // Add recipient tag to UI
@@ -219,21 +213,32 @@
                     if (files.length > 0) {
                         const p = dropArea.querySelector('p');
                         p.innerHTML = `<strong>File selected:</strong> ${files[0].name}`;
-                        
-                        // Log files AND the recipient list
-                        console.log(`File(s) dropped for ${recipients.length} recipient(s):`, files);
-                        console.log('Recipients:', recipients);
-                        
-                        // Optional: close modal after 2s and reset text
+
+                        const formData = new FormData();
+                        formData.append('file', files[0]);   // "file" is the field name Flask will use
+
+                        fetch('/upload', {                   // adjust URL if needed
+                            method: 'POST',
+                            body: formData                   // DO NOT set Content-Type manually
+                        })
+                        .then(res => res.json())
+                        .then(data => {
+                            console.log('Upload OK:', data);    
+                        })
+                        .catch(err => {
+                            console.error('Upload error:', err);
+                        });
+
+                        // Optional: keep your modal-close logic
                         setTimeout(() => {
                             closeModal(uploadModal);
-                            // Reset text after modal is closed
                             setTimeout(() => {
                                 p.innerHTML = `Drag & drop files here or <strong>click to select</strong>`;
-                                fileInput.value = ''; // Clear the file input
-                            }, 300); // 300ms matches CSS transition
+                                fileInput.value = '';
+                            }, 300);
                         }, 2000);
                     }
                 }
+
             }
         ;

@@ -3,14 +3,7 @@ from cryptography.hazmat.primitives.asymmetric import rsa, padding
 from cryptography.hazmat.primitives import serialization, hashes
 
 def sha256_hasher(file_storage):
-    sha256 = hashlib.sha256()
-    file_storage.stream.seek(0)
-
-    for chunk in iter(lambda: file_storage.stream.read(4096), b''):
-        sha256.update(chunk)
-
-    file_storage.stream.seek(0)
-    return sha256.hexdigest()
+    return hashlib.sha256(file_storage).hexdigest()
 
 def generate_rsa_keypair():
     private_key = rsa.generate_private_key(

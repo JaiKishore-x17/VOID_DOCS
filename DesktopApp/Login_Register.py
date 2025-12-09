@@ -8,7 +8,7 @@ def registeration(name, user_id, user_pass, x):
     db = client["VOID-Docs"]
     Admins_ID = db["Admins_ID"]
     Admins_Public = db["Admins_Public"]
-
+    
     existing_user = Admins_ID.find_one({"ID": user_id})
 
     if existing_user is None:
