@@ -1,0 +1,167 @@
+:root {
+    --body_bg : #f4f4f4;
+    --div_bg : rgb(255, 255, 255);
+    --head_font : rgb(0, 0, 0);
+    --body_font : #333;
+    --info_font : #444;
+    --slogan_font : #555;
+    --akatsuki : rgb(255, 0, 0);
+}
+
+
+p{
+    color: #ff0000;
+}
+
+body {
+            font-family: "Share Tech", sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            color: #333;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .top_bar {
+            height: 10vh;
+            width: 100vw;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 10;
+            padding: 1.5vh 5vw;
+            box-sizing: border-box;
+            background-color: rgb(255, 255, 255);
+            box-shadow: 0 0.5vh 1.5vh rgba(0, 0, 0, 0.1);
+        }
+
+        .logo {
+            display: flex;
+            flex-direction: row;
+            font-size: 4vh;
+            font-weight: 800;
+        }
+
+        .vo {
+            color: red;
+        }
+
+        .id {
+            color: black;
+        }
+
+        .docs {
+            color: black;
+        }
+        
+        .nav_links {
+            display: flex;
+            gap: 4vw;
+        }
+        
+        .nav_links a {
+            text-decoration: none;
+            color: black;
+            font-size: 1.8vh;
+            font-weight: 600;
+        }
+
+        .mainview {
+            display: flex;
+            flex-direction: column;
+            padding: 3vh 5vw;
+            margin-top: 10vh;
+            align-items: center;
+            justify-content: center;
+            width: 100vw;
+            box-sizing: border-box;
+            flex-grow: 1;
+        }
+        
+        .login-container {
+            width: 90vw;
+            max-width: 50vh;
+            margin-top: 5vh;
+            padding: 4vh 5vw;
+            box-sizing: border-box;
+            background-color: #ffffff;
+            border-radius: 1vw;
+            box-shadow: 0 0.5vh 1.5vh rgba(0, 0, 0, 0.1);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        .section-title {
+            font-size: 4vh;
+            font-weight: 600;
+            color: black;
+            text-align: center;
+            margin-bottom: 3vh;
+        }
+        
+        form {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            gap: 2vh;
+        }
+        
+        form label {
+            font-size: 1.8vh;
+            font-weight: 600;
+            color: #555;
+        }
+        
+        form input {
+            width: 100%;
+            padding: 1.5vh 3vw;
+            box-sizing: border-box;
+            border: 0.1vh solid #ccc;
+            border-radius: 1vw;
+            font-family: "Share Tech", sans-serif;
+            font-size: 2vh;
+        }
+        
+        form input:focus {
+            outline: none;
+            border-color: red;
+            box-shadow: 0 0 1vh rgba(255, 0, 0, 0.2);
+        }
+        
+        form button {
+            text-decoration: none;
+            background-color: red;
+            color: white;
+            font-family: "Share Tech", sans-serif;
+            font-size: 2vh;
+            font-weight: 600;
+            padding: 1.5vh 4vw;
+            border-radius: 1vw;
+            margin-top: 2vh;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+        }
+        
+        form button:hover {
+            background-color: #cc0000;
+            box-shadow: 0 0.5vh 1.5vh rgba(255, 0, 0, 0.3);
+            transform: translateY(-0.2vh);
+        }
+        
+        .footer {
+            width: 100vw;
+            padding: 3vh 5vw;
+            box-sizing: border-box;
+            text-align: center;
+            background-color: #333;
+            color: #aaa;
+            font-size: 1.5vh;
+        }

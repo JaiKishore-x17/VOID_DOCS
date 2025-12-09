@@ -1,0 +1,329 @@
+body {
+            font-family: "Share Tech", sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            color: #333;
+        }
+
+        .top_bar {
+            height: 10vh;
+            width: 100vw;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 10;
+            padding: 1.5vh 5vw;
+            box-sizing: border-box;
+            background-color: rgb(255, 255, 255);
+            box-shadow: 0 0.5vh 1.5vh rgba(0, 0, 0, 0.1);
+        }
+
+        .logo {
+            display: flex;
+            flex-direction: row;
+            font-size: 4vh;
+            font-weight: 800;
+        }
+
+        .vo {
+            color: red;
+        }
+
+        .id {
+            color: black;
+        }
+
+        .docs {
+            color: black;
+        }
+        
+        .nav_links {
+            display: flex;
+            gap: 4vw;
+            align-items: center;
+        }
+        
+        .nav_links a {
+            text-decoration: none;
+            color: black;
+            font-size: 1.8vh;
+            font-weight: 600;
+        }
+        
+        .nav_links a svg {
+            height: 3.5vh;
+            width: 3.5vh;
+            color: #333;
+            transition: color 0.3s ease;
+        }
+        
+        .nav_links a:hover svg {
+            color: red;
+        }
+
+        .mainview {
+            display: flex;
+            flex-direction: column;
+            padding: 3vh 5vw;
+            margin-top: 10vh; /* Adjust for fixed top bar */
+            align-items: center;
+            width: 100vw;
+            box-sizing: border-box;
+        }
+        
+        .info-section {
+            width: 90vw;
+            margin-top: 5vh;
+            padding: 4vh 5vw;
+            box-sizing: border-box;
+            background-color: #ffffff;
+            border-radius: 1vw;
+            box-shadow: 0 0.5vh 1.5vh rgba(0, 0, 0, 0.1);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        .section-title {
+            font-size: 4vh;
+            font-weight: 600;
+            color: black;
+            text-align: center;
+            margin-bottom: 2vh;
+            width: 100%;
+        }
+        
+        .cbox {
+            display: flex;
+            flex-wrap: wrap; /* Allow items to wrap on smaller screens */
+            justify-content: center; /* Center items when they wrap */
+            align-items: flex-start; /* Align items to the top if different heights */
+            width: 100vw; /* Keep consistent width */
+            box-sizing: border-box;
+            gap: 2vh; /* Consistent gap between items */
+            margin-top: 1vh;
+        }
+
+        .rlink {
+            text-decoration: none;
+            color: white;
+            
+            box-sizing: border-box; /* Include padding/border in width calculation */
+        }
+        
+        /* Adjust for smaller screens to make buttons full width */
+        
+
+        .reg_box {
+            min-height: 45vw;
+            width: 45vw; /* Take full width of its parent (.rlink) */
+            background-color: rgb(255, 255, 255);
+            backdrop-filter: blur(1.2vh);
+            box-shadow: 0 0.5vh 1.5vh rgba(0, 0, 0, 0.1);
+            border: 0.1vh solid rgba(0, 0, 0, 0.05);
+            border-radius: 1vw;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 2.5vh 2vw; /* Adjusted padding */
+            box-sizing: border-box;
+            transition: box-shadow 0.3s ease, transform 0.3s ease;
+            cursor: pointer;
+            flex-direction: column; /* Stack icon and text for better mobile display */
+            text-align: center;
+            gap: 1vh; /* Gap between icon and text */
+        }
+        
+        .reg_box:hover {
+            box-shadow: 0 1vh 2.5vh rgba(0, 0, 0, 0.15);
+            transform: translateY(-0.5vh);
+        }
+
+        .symb {
+            height: 4vh;
+            width: 4vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: red; /* Icon color */
+        }
+
+        .symb svg {
+            width: 4vh;
+            height: 4vh;
+            object-fit: contain;
+            color: black; /* Default SVG color */
+        }
+        
+        .ctext {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .reg, .log {
+            color: black;
+            font-size: 2vh;
+            font-weight: 400;
+        }
+
+        .desc {
+            color: #333;
+            font-size: 1vh;
+            margin-top: 0.5vh;
+        }
+        
+        /* Document List Styles */
+        .document-list {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            gap: 1.5vh;
+        }
+        
+        .document-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: #f9f9f9;
+            padding: 2vh 3vw;
+            border-radius: 1vw;
+            box-shadow: 0 0.2vh 0.5vh rgba(0,0,0,0.1);
+            font-size: 2vh;
+            font-weight: 600;
+        }
+        
+        .doc-actions {
+            display: flex;
+            gap: 2vw;
+        }
+        
+        .doc-actions button {
+            text-decoration: none;
+            background-color: red;
+            color: white;
+            font-family: "Share Tech", sans-serif;
+            font-size: 1.5vh;
+            font-weight: 600;
+            padding: 1vh 2vw;
+            border-radius: 1vw;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .doc-actions button:hover {
+            background-color: #cc0000;
+            transform: translateY(-0.2vh);
+        }
+        
+        .doc-actions .view-btn {
+             background-color: #555;
+        }
+        .doc-actions .view-btn:hover {
+             background-color: #333;
+        }
+        
+        /* Transaction Explorer Styles (Matching Image) */
+        .explorer-header {
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-bottom: 2vh;
+            margin-bottom: 2vh; /* Space below header */
+            border-bottom: 0.1vh solid #eee; /* Light separator */
+        }
+        
+        .explorer-header-left {
+            display: flex;
+            align-items: center;
+            gap: 1.5vw;
+        }
+        
+        .explorer-header-left svg {
+            height: 4vh;
+            width: 4vh;
+            color: orange; /* Bitcoin orange */
+        }
+        
+        .explorer-header-left h2 {
+            margin: 0;
+            font-size: 3.5vh;
+            font-weight: 600;
+            color: #333;
+        }
+        
+        .explorer-header-right svg {
+            height: 3vh;
+            width: 3vh;
+            color: #888;
+            cursor: pointer;
+        }
+
+        .explorer-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 1.6vh;
+            overflow: hidden;
+        }
+        
+        .explorer-table thead {
+            display: none; /* Hide header as per image style */
+        }
+
+        .explorer-table tr {
+            display: flex; /* Use flex for row layout */
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.5vh 0; /* Vertical padding for rows */
+            border-bottom: 0.1vh solid #eee;
+        }
+        
+        .explorer-table tr:last-child {
+            border-bottom: none;
+        }
+        
+        .explorer-table td {
+            flex: 1; /* Distribute space */
+            padding: 0; /* Remove default td padding */
+            text-align: left;
+            white-space: nowrap; /* Prevent wrapping for hash/time */
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        
+        .explorer-table td:nth-child(1) { /* Transaction Hash */
+            flex: 2; /* Give more space to hash */
+            max-width: 30%; /* Limit max width */
+            font-weight: 600;
+            color: #333; /* Darker for hash */
+        }
+        
+        .explorer-table td:nth-child(2) { /* Time */
+            flex: 1;
+            text-align: center;
+            color: #888;
+            font-size: 1.7vh;
+        }
+        
+        .explorer-table td:nth-child(3) { /* Document Name */
+            flex: 2;
+            text-align: right;
+            color: #555;
+            font-weight: 500;
+        }
+        
+        /* Adjust column distribution for smaller screens if needed */
+        @media (max-width: 600px) {
+            .explorer-table td:nth-child(1) {
+                max-width: 40%;
+            }
+            .explorer-table td:nth-child(3) {
+                max-width: 35%;
+            }
+        }

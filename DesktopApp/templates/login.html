@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login ADMIN</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Share+Tech&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/login.css') }}">
+</head>
+<body>
+    
+
+    <div class="top_bar">
+        <div class="logo">
+            <span class="vo">VO</span>
+            <span class="id">ID</span>
+            <span class="docs">-DOCS</span>
+        </div>
+        <nav class="nav_links">
+            <a href="{{ url_for('Register_Page')}}">Register</a>
+        </nav>
+    </div>
+
+    <div class="mainview">
+    
+        <div class="form-box">
+            <h2>Admin Portal Login</h2>
+            <form class="" action="/Login_Admin" method="post">
+                <label for="user_id">ID Number</label>
+                <input type="text" id="user_id" name="user_id" required>
+
+                <label for="password">Password</label>
+                <input type="password" id="password" name="password" required>
+
+                <button type="submit">Login</button>
+            </form>
+            <p class="register-link">Don't have an account? <a href="{{ url_for('Register_Page')}}">Register here</a></p>
+        </div>
+
+    </div>
+    <script src="{{ url_for('static', filename='js/index.js') }}"></script> ` 1
+</body>
+</html>

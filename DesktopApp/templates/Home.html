@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VOID-DOCS - ADMIN Dashboard</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Share+Tech&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/home.css') }}">
+</head>
+<body>
+    
+
+    <div class="top_bar">
+        <div class="logo">
+            <span class="vo">VO</span><span class="id">ID</span><span class="docs">-DOCS</span>
+        </div>
+        <nav class="nav_links">
+            <a href="{{ url_for('Logout')}}">Logout</a>
+            <a href="" title="Profile">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                    <circle cx="12" cy="7" r="4"></circle>
+                </svg>
+            </a>
+        </nav>
+    </div>
+    
+    <div class="mainview">
+        
+        <div class="cbox">
+            
+            <a class="rlink" id="open-upload-btn" href="#">
+                <div class="reg_box">
+                    <div class="symb">
+                        <!-- Upload Icon -->
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M5 20h14v-2H5v2zm14-9h-4V3H9v8H5l7 7l7-7z"/>
+                        </svg>
+                    </div>
+                    <div class="ctext">
+                        <div class="reg" style="font-size: 3.5vh;">Upload Document</div>
+                        <div class="desc">Upload and issue a new document.</div>
+                    </div>
+                </div>
+            </a>
+            
+            <a class="rlink" id="open-create-btn" href="#">
+                <div class="reg_box">
+                    <div class="symb">
+                        <!-- Create Icon -->
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M14 2H6c-1.1 0-1.99.9-1.99 2L4 20c0 1.1.89 2 1.99 2H18c1.1 0 2-.9 2-2V8l-6-6zm2 16H8v-2h8v2zm0-4H8v-2h8v2zm-3-5V3.5L18.5 9H13z"/>
+                        </svg>
+                    </div>
+                    <div class="ctext">
+                        <div class="reg" style="font-size: 3.5vh;">Create Document</div>
+                        <div class="desc">Create a new verifiable document.</div>
+                    </div>
+                </div>
+            </a>
+            
+        </div>
+        
+        <div class="info-section" id="my_documents">
+            <h2 class="section-title">Uploaded Documents</h2>
+            <div class="document-list">
+                <div class="document-item">
+                    <span>Aadhaar_Citizen_1234.pdf</span>
+                    <div class="doc-actions">
+                        <button class="view-btn">View</button>
+                        <button class="transfer-btn">Revoke</button>
+                    </div>
+                </div>
+                <div class="document-item">
+                    <span>Property_Deed_Citizen_5678.pdf</span>
+                    <div class="doc-actions">
+                        <button class="view-btn">View</button>
+                        <button class="transfer-btn">Revoke</button>
+                    </div>
+                </div>
+                <div class="document-item">
+                    <span>University_Degree_Citizen_9012.pdf</span>
+                    <div class="doc-actions">
+                        <button class="view-btn">View</button>
+                        <button class="transfer-btn">Revoke</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="info-section" id="explorer">
+            <div class="explorer-header">
+                <div class="explorer-header-left">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M12 2C6.47 2 2 6.47 2 12s4.47 10 10 10s10-4.47 10-10S17.53 2 12 2zm4.12 7.08L12 11.2V7.5c0-.4-.3-.7-.7-.7h-2.1c-.4 0-.7.3-.7.7v4.11c0 .28-.15.54-.4.68l-4.14 2.39c-.5.29-.68.93-.39 1.43l.7.7c.29.5.93.68 1.43.39l4.14-2.39c.25-.14.4-.4.4-.68V11.2l4.12-2.39c.5-.29.68-.93.39-1.43l-.7-.7c-.29-.5-.93-.68-1.43-.39z"/>
+                    </svg>
+                    <h2>Latest Transactions</h2>
+                </div>
+                <div class="explorer-header-right">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M4 12l1.41 1.41L11 7.83V20h2V7.83l5.59 5.58L20 12l-8-8-8 8z" transform="rotate(90 12 12)"/>
+                    </svg>
+                </div>
+            </div>
+            
+            <table class="explorer-table">
+                <tbody>
+                    <tr>
+                        <td class="hash">789c7-f0b50</td>
+                        <td class="time">22:43:14</td>
+                        <td class="document-name">Property_Deed_Plot12B</td>
+                    </tr>
+                    <tr>
+                        <td class="hash">0bd31-81482</td>
+                        <td class="time">22:43:15</td>
+                        <td class="document-name">Aadhaar Card.pdf</td>
+                    </tr>
+                    <tr>
+                        <td class="hash">be930-c830e</td>
+                        <td class="time">22:43:13</td>
+                        <td class="document-name">University_Degree.pdf</td>
+                    </tr>
+                    <tr>
+                        <td class="hash">4a763-9bbdc</td>
+                        <td class="time">22:43:15</td>
+                        <td class="document-name">Driving License.pdf</td>
+                    </tr>
+                    <tr>
+                        <td class="hash">bc85a-b5c2c</td>
+                        <td class="time">22:43:16</td>
+                        <td class="document-name">Passport.pdf</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+
+    <div class="overlay" id="modal-overlay"></div>
+
+    <!-- Upload Modal -->
+    <div class="modal" id="upload-modal">
+        <div class="modal-header">
+            <h2>Upload New Document</h2>
+            <span class="modal-close" data-modal="upload-modal">&times;</span>
+        </div>
+        
+        <div class="modal-form">
+            <label for="user-id-input">Citizen User ID</label>
+            <div class="search-bar">
+                <input type="text" id="user-id-input" placeholder="Enter citizen's User ID to find them...">
+                <button type="button" id="search-user-btn">Search</button>
+            </div>
+        </div>
+
+        <div id="user-details-container" class="user-details">
+            <h4 id="recipient-list-title">Recipients:</h4>
+            <div id="recipient-list"></div>
+            <p class="placeholder" id="recipient-placeholder">Enter a User ID to fetch details.</p>
+        </div>
+
+        <div class="drag-drop-area" style="display: none;">
+            <input type="file" id="file-input" multiple style="display: none;">
+            <div class="upload-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M5 20h14v-2H5v2zm14-9h-4V3H9v8H5l7 7l7-7z"/>
+                </svg>
+            </div>
+            <p>Drag & drop files here or <strong>click to select</strong></p>
+        </div>
+    </div>
+
+    <!-- Create Modal -->
+    <div class="modal" id="create-modal">
+        <div class="modal-header">
+            <h2>Create New Document</h2>
+            <span class="modal-close" data-modal="create-modal">&times;</span>
+        </div>
+        <form class="modal-form">
+            <label for="doc-title">Document Title</label>
+            <input type="text" id="doc-title" name="doc-title" placeholder="e.g., Official Notice 123">
+            
+            <label for="doc-content">Content</label>
+            <textarea id="doc-content" name="doc-content" placeholder="Enter document text or data..."></textarea>
+            
+            <button type="submit">Create & Issue Document</button>
+        </form>
+    </div>
+    <script src="{{ url_for('static', filename='js/home.js') }}"></script>
+</body>
+</html>

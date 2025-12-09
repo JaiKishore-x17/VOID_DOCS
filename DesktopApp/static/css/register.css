@@ -1,0 +1,173 @@
+body {
+            font-family: "Share Tech", sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #141414;
+            color: #f4f4f4;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        #blockchain-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            z-index: 1;
+        }
+
+        .top_bar {
+            height: 10vh;
+            width: 100vw;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 10;
+            padding: 1.5vh 5vw;
+            box-sizing: border-box;
+            background-color: rgb(0, 0, 0);
+            box-shadow: 0 0.5vh 1.5vh rgba(0, 0, 0, 0.5);
+            border-bottom: 0.1vh solid #333;
+        }
+
+        .logo {
+            display: flex;
+            flex-direction: row;
+            font-size: 4vh;
+            font-weight: 800;
+        }
+
+        .vo {
+            color: red;
+        }
+
+        .id {
+            color: #f4f4f4;
+        }
+
+        .docs {
+            color: #f4f4f4;
+        }
+        
+        .nav_links {
+            display: flex;
+            gap: 2vw;
+        }
+        
+        .nav_links a {
+            text-decoration: none;
+            color: #f4f4f4;
+            font-size: 1.8vh;
+            font-weight: 600;
+            transition: color 0.3s ease;
+        }
+        
+        .nav_links a:hover {
+            color: red;
+        }
+
+        .mainview {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh; /* Full viewport height */
+            width: 100%;
+            padding-top: 10vh; /* Account for top bar */
+            box-sizing: border-box;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .form-box {
+            width: 100%;
+            max-width: 450px; /* Constrain form width */
+            background-color: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(5px);
+            box-shadow: 0 0.5vh 1.5vh rgba(0, 0, 0, 0.3);
+            border: 0.1vh solid #333;
+            border-radius: 1vw;
+            padding: 4vh 3vw;
+            box-sizing: border-box;
+            transition: box-shadow 0.3s ease, border-color 0.3s ease;
+        }
+        
+        .form-box:hover {
+            border-color: red;
+            box-shadow: 0 0 3vh rgba(255, 0, 0, 0.3);
+        }
+
+        .form-box h2 {
+            font-size: 4vh;
+            font-weight: 600;
+            color: #f4f4f4;
+            text-align: center;
+            margin-top: 0;
+            margin-bottom: 3vh;
+        }
+
+        .form-box form {
+            display: flex;
+            flex-direction: column;
+            gap: 2vh;
+        }
+        
+        .form-box label {
+            font-size: 1.8vh;
+            color: #aaa;
+            margin-bottom: -1vh; /* Position label closer to input */
+        }
+        
+        .form-box input {
+            font-family: "Share Tech", sans-serif;
+            font-size: 2vh;
+            color: #f4f4f4;
+            background-color: #222;
+            border: 0.1vh solid #444;
+            border-radius: 0.5vw;
+            padding: 1.5vh 1vw;
+            transition: border-color 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .form-box input:focus {
+            outline: none;
+            border-color: red;
+            box-shadow: 0 0 1vh rgba(255, 0, 0, 0.2);
+        }
+        
+        .form-box button {
+            font-family: "Share Tech", sans-serif;
+            font-size: 2.2vh;
+            font-weight: 600;
+            color: white;
+            background-color: red;
+            border: none;
+            border-radius: 0.5vw;
+            padding: 1.5vh 1vw;
+            cursor: pointer;
+            margin-top: 2vh;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+        
+        .form-box button:hover {
+            background-color: #cc0000;
+            transform: translateY(-0.3vh);
+        }
+        
+        .form-box .login-link {
+            font-size: 1.6vh;
+            color: #aaa;
+            text-align: center;
+            margin-top: 2vh;
+        }
+        
+        .form-box .login-link a {
+            color: red;
+            text-decoration: none;
+            font-weight: 600;
+        }

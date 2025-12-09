@@ -1,0 +1,604 @@
+body {
+            font-family: "Share Tech", sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #141414;
+            color: #f4f4f4;
+        }
+
+
+body::-webkit-scrollbar {
+  display: none;
+}
+
+
+
+        #blockchain-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            z-index: 1;
+        }
+
+        .top_bar {
+            height: 10vh;
+            width: 100vw;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 10;
+            padding: 1.5vh 5vw;
+            box-sizing: border-box;
+            background-color: rgb(0, 0, 0);
+            box-shadow: 0 0.5vh 1.5vh rgba(0, 0, 0, 0.5);
+            border-bottom: 0.1vh solid #333;
+        }
+
+        .logo {
+            display: flex;
+            flex-direction: row;
+            font-size: 4vh;
+            font-weight: 800;
+        }
+
+        .vo {
+            color: red;
+        }
+
+        .id {
+            color: #f4f4f4;
+        }
+
+        .docs {
+            color: #f4f4f4;
+        }
+        
+        .nav_links {
+            display: flex;
+            gap: 2vw;
+            align-items: center;
+        }
+        
+        .nav_links a {
+            text-decoration: none;
+            color: #f4f4f4;
+            font-size: 1.8vh;
+            font-weight: 600;
+            transition: color 0.3s ease;
+        }
+        
+        .nav_links a:hover {
+            color: red;
+        }
+
+        .nav_links a svg {
+            height: 3.5vh;
+            width: 3.5vh;
+            color: #f4f4f4;
+            transition: color 0.3s ease;
+        }
+        
+        .nav_links a:hover svg {
+            color: red;
+        }
+
+        .mainview {
+            display: flex;
+            flex-direction: column;
+            padding: 3vh 5vw;
+            margin-top: 10vh;
+            align-items: center;
+            width: 100vw;
+            box-sizing: border-box;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .info-section {
+            width: 90vw;
+            max-width: 1200px;
+            margin-top: 5vh;
+            padding: 4vh 5vw;
+            box-sizing: border-box;
+            background-color: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(5px);
+            border: 0.1vh solid #333;
+            border-radius: 1vw;
+            box-shadow: 0 0.5vh 1.5vh rgba(0, 0, 0, 0.3);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        .section-title {
+            font-size: 4vh;
+            font-weight: 600;
+            color: #f4f4f4;
+            text-align: center;
+            margin-bottom: 2vh;
+            width: 100%;
+        }
+        
+        .cbox {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            width: 90vw;
+            max-width: 1200px;
+            box-sizing: border-box;
+            gap: 2vh;
+            margin-top: 5vh;
+        }
+
+        .rlink {
+            text-decoration: none;
+            color: white;
+            flex-basis: 48%;
+            max-width: 48%;
+            box-sizing: border-box;
+        }
+        
+        @media (max-width: 600px) {
+            .rlink {
+                flex-basis: 98%;
+                max-width: 98%;
+            }
+        }
+
+        .reg_box {
+            min-height: 15vh;
+            width: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(5px);
+            box-shadow: 0 0.5vh 1.5vh rgba(0, 0, 0, 0.3);
+            border: 0.1vh solid #333;
+            border-radius: 1vw;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 2.5vh 2vw;
+            box-sizing: border-box;
+            transition: box-shadow 0.3s ease, transform 0.3s ease, border-color 0.3s ease;
+            cursor: pointer;
+            flex-direction: column;
+            text-align: center;
+            gap: 1vh;
+        }
+        
+        .reg_box:hover {
+            transform: translateY(-0.5vh);
+            border-color: red;
+            box-shadow: 0 0 3vh rgba(255, 0, 0, 0.3);
+        }
+
+        .symb {
+            height: 7vh;
+            width: 7vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: red;
+        }
+
+        .symb svg {
+            width: 7vh;
+            height: 7vh;
+            object-fit: contain;
+            color: #f4f4f4;
+        }
+        
+        .ctext {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .reg, .log {
+            color: #f4f4f4;
+            font-size: 3vh;
+            font-weight: 400;
+        }
+
+        .desc {
+            color: #aaa;
+            font-size: 1.8vh;
+            margin-top: 0.5vh;
+        }
+        
+        /* Modal Styles */
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background-color: rgba(0, 0, 0, 0.7);
+            backdrop-filter: blur(3px);
+            z-index: 100;
+            display: none; /* Hidden by default */
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        .overlay.active {
+            display: block;
+            opacity: 1;
+        }
+
+        .modal {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) scale(0.9);
+            background-color: rgba(10, 10, 10, 0.9);
+            backdrop-filter: blur(10px);
+            border: 0.1vh solid #333;
+            border-radius: 1vw;
+            box-shadow: 0 0.5vh 1.5vh rgba(0, 0, 0, 0.5);
+            z-index: 101;
+            width: 90%;
+            max-width: 600px;
+            padding: 3vh 3vw;
+            box-sizing: border-box;
+            display: none; /* Hidden by default */
+            opacity: 0;
+            transition: opacity 0.3s ease, transform 0.3s ease;
+        }
+        
+        .modal:hover {
+            border-color: red;
+        }
+        
+        .modal.active {
+            display: block;
+            opacity: 1;
+            transform: translate(-50%, -50%) scale(1);
+        }
+
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-bottom: 2vh;
+            border-bottom: 0.1vh solid #333;
+            margin-bottom: 3vh;
+        }
+        .modal-header h2 {
+            font-size: 3vh;
+            color: #f4f4f4;
+            margin: 0;
+        }
+        .modal-close {
+            font-size: 4vh;
+            color: #aaa;
+            cursor: pointer;
+            transition: color 0.3s ease;
+            line-height: 1;
+        }
+        .modal-close:hover {
+            color: red;
+        }
+
+        /* Drag and Drop Area */
+        .drag-drop-area {
+            border: 0.2vh dashed #555;
+            border-radius: 1vw;
+            padding: 8vh 4vw;
+            text-align: center;
+            cursor: pointer;
+            transition: border-color 0.3s ease, background-color 0.3s ease;
+        }
+        .drag-drop-area:hover {
+            border-color: red;
+            background-color: #111;
+        }
+        /* Added class for drag-over state */
+        .drag-drop-area.drag-over {
+            border-color: red;
+            background-color: #111;
+            border-style: solid;
+        }
+        .drag-drop-area .upload-icon svg {
+            width: 8vh;
+            height: 8vh;
+            color: #888;
+            margin-bottom: 2vh;
+        }
+        .drag-drop-area p {
+            font-size: 2vh;
+            color: #aaa;
+            margin: 0;
+        }
+        .drag-drop-area p strong {
+            color: red;
+        }
+
+        /* Create Document Form */
+        .modal-form {
+            display: flex;
+            flex-direction: column;
+            gap: 2vh;
+        }
+        .modal-form label {
+            font-size: 1.8vh;
+            color: #aaa;
+        }
+        .modal-form input,
+        .modal-form textarea {
+            font-family: "Share Tech", sans-serif;
+            font-size: 2vh;
+            color: #f4f4f4;
+            background-color: #222;
+            border: 0.1vh solid #444;
+            border-radius: 0.5vw;
+            padding: 1.5vh 1vw;
+        }
+        .modal-form textarea {
+            min-height: 20vh;
+            resize: vertical;
+        }
+        .modal-form button {
+            font-family: "Share Tech", sans-serif;
+            font-size: 2.2vh;
+            color: white;
+            background-color: red;
+            border: none;
+            padding: 1.5vh;
+            cursor: pointer;
+            border-radius: 0.5vw;
+            transition: background-color 0.3s ease;
+        }
+        .modal-form button:hover {
+            background-color: #cc0000;
+        }
+        
+        /* New styles for User Search */
+        .search-bar {
+            display: flex;
+            gap: 1vw;
+            margin-bottom: 2vh;
+        }
+        .search-bar input {
+            flex-grow: 1;
+            font-family: "Share Tech", sans-serif;
+            font-size: 2vh;
+            color: #f4f4f4;
+            background-color: #222;
+            border: 0.1vh solid #444;
+            border-radius: 0.5vw;
+            padding: 1.5vh 1vw;
+        }
+        .search-bar button {
+            font-family: "Share Tech", sans-serif;
+            font-size: 2vh;
+            color: white;
+            background-color: red;
+            border: none;
+            padding: 1.5vh 2vw;
+            cursor: pointer;
+            border-radius: 0.5vw;
+            transition: background-color 0.3s ease;
+            white-space: nowrap;
+        }
+        .search-bar button:hover {
+            background-color: #cc0000;
+        }
+        
+        .user-details {
+            background-color: #111;
+            border: 0.1vh solid #333;
+            border-radius: 0.5vw;
+            padding: 2vh 1.5vw;
+            min-height: 5vh;
+            margin-bottom: 3vh;
+        }
+        .user-details p {
+            margin: 0;
+            font-size: 1.8vh;
+            color: #aaa;
+        }
+        .user-details h4 {
+            font-size: 2vh;
+            color: red;
+            margin-top: 0;
+            margin-bottom: 1vh;
+        }
+        .user-details p strong {
+            color: #ddd;
+        }
+        .user-details .error {
+            color: red;
+            font-weight: 600;
+        }
+        
+        /* New styles for Recipient List */
+        #recipient-list-title {
+            font-size: 2vh;
+            color: red;
+            margin-top: 0;
+            margin-bottom: 1vh;
+            display: none; /* Hidden by default */
+        }
+        
+        .recipient-tag {
+            display: inline-flex;
+            align-items: center;
+            background-color: #222;
+            border: 0.1vh solid #444;
+            border-radius: 0.5vw;
+            padding: 1vh 1vw;
+            margin-right: 1vw;
+            margin-bottom: 1vh;
+            font-size: 1.8vh;
+        }
+        
+        .recipient-tag span {
+            color: #f4f4f4;
+            margin-right: 1vw;
+        }
+        
+        .recipient-tag .remove-recipient {
+            font-size: 2.5vh;
+            color: #888;
+            cursor: pointer;
+            line-height: 1;
+        }
+        .recipient-tag .remove-recipient:hover {
+            color: red;
+        }
+
+
+        /* Document List Styles */
+        .document-list {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            gap: 1.5vh;
+        }
+        
+        .document-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: #222;
+            padding: 2vh 3vw;
+            border-radius: 1vw;
+            box-shadow: 0 0.2vh 0.5vh rgba(0,0,0,0.5);
+            font-size: 2vh;
+            font-weight: 600;
+            border: 0.1vh solid #333;
+        }
+        
+        .doc-actions {
+            display: flex;
+            gap: 2vw;
+        }
+        
+        .doc-actions button {
+            text-decoration: none;
+            background-color: red;
+            color: white;
+            font-family: "Share Tech", sans-serif;
+            font-size: 1.5vh;
+            font-weight: 600;
+            padding: 1vh 2vw;
+            border-radius: 0.5vw;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .doc-actions button:hover {
+            background-color: #cc0000;
+            transform: translateY(-0.2vh);
+        }
+        
+        .doc-actions .view-btn {
+             background-color: #555;
+        }
+        .doc-actions .view-btn:hover {
+             background-color: #333;
+        }
+        
+        /* Transaction Explorer Styles */
+        .explorer-header {
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-bottom: 2vh;
+            margin-bottom: 2vh;
+            border-bottom: 0.1vh solid #333;
+        }
+        
+        .explorer-header-left {
+            display: flex;
+            align-items: center;
+            gap: 1.5vw;
+        }
+        
+        .explorer-header-left svg {
+            height: 4vh;
+            width: 4vh;
+            color: orange;
+        }
+        
+        .explorer-header-left h2 {
+            margin: 0;
+            font-size: 3.5vh;
+            font-weight: 600;
+            color: #f4f4f4;
+        }
+        
+        .explorer-header-right svg {
+            height: 3vh;
+            width: 3vh;
+            color: #888;
+            cursor: pointer;
+        }
+
+        .explorer-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 1.6vh;
+            overflow: hidden;
+        }
+        
+        .explorer-table thead {
+            display: none;
+        }
+
+        .explorer-table tr {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.5vh 0;
+            border-bottom: 0.1vh solid #333;
+        }
+        
+        .explorer-table tr:last-child {
+            border-bottom: none;
+        }
+        
+        .explorer-table td {
+            flex: 1;
+            padding: 0;
+            text-align: left;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        
+        .explorer-table td:nth-child(1) { /* Hash */
+            flex: 2;
+            max-width: 30%;
+            font-weight: 600;
+            color: #eee;
+        }
+        
+        .explorer-table td:nth-child(2) { /* Time */
+            flex: 1;
+            text-align: center;
+            color: #888;
+            font-size: 1.7vh;
+        }
+        
+        .explorer-table td:nth-child(3) { /* Document Name */
+            flex: 2;
+            text-align: right;
+            color: #ccc;
+            font-weight: 500;
+        }
+        
+        @media (max-width: 600px) {
+            .explorer-table td:nth-child(1) {
+                max-width: 40%;
+            }
+            .explorer-table td:nth-child(3) {
+                max-width: 35%;
+            }
+        }

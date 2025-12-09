@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VOID-Docs</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/index.css') }}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Archivo:ital,wght@0,100..900;1,100..900&family=Asimovian&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Outfit:wght@100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Share+Tech&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <div class="top_bar">
+        <div class="logo">
+            <span class="vo">VO</span>
+            <span class="id">ID</span>
+            <span class="docs">-DOCS</span>
+        </div>
+        <nav class="nav_links">
+            <a href="#features">Features</a>
+            <a href="#tech">Technology</a>
+            <a href="#get_started">Login</a>
+            
+        </nav>
+    </div>
+
+    <div class="mainview">
+    
+        <div class="hero">
+            <div class="welcome">SECURE. VERIFY. TRANSFER.</div>
+            <p class="hero-slogan">The future of document safety is here. Powered by Blockchain.</p>
+            <a href="#get_started" class="cta-button">GET STARTED NOW</a>
+        </div>
+        
+        <div class="info-section">
+            <h2 class="section-title">What is VOID-DOCS?</h2>
+            <p>VOID-DOCS is a revolutionary platform for Indian citizens to secure, manage, and verify their most important documents. We use decentralized blockchain technology to create an unchangeable, verifiable digital presence for your identity and property documents. This makes them tamper-proof and instantly accessible.</p>
+        </div>
+
+        <div class="features-grid" id="features">
+        
+            <div class="reg_box">
+                <div class="symb">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
+                </div>
+                <div class="reg">Immutable Security</div>
+                <div class="desc">Store your Aadhaar, Passport, and other vital documents on an unchangeable blockchain ledger. Once verified, they cannot be altered.</div>
+            </div>
+
+            <div class="reg_box">
+                <div class="symb">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
+                </div>
+                <div class="reg">Property as NFTs</div>
+                <div class="desc">We convert your property deeds into unique Non-Fungible Tokens (NFTs). This simplifies buying, selling, and transferring property with unparalleled security.</div>
+            </div>
+            
+            <div class="reg_box">
+                <div class="symb">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+                </div>
+                <div class="reg">Verified Digital Identity</div>
+                <div class="desc">Create a single, verified digital presence. Use your VOID-DOCS profile for seamless verification with banks, government agencies, and more.</div>
+            </div>
+        
+        </div>
+        
+        <div class="info-section" id="tech">
+            <h2 class="section-title">The Technology</h2>
+            <p>We utilize a state-of-the-art decentralized blockchain network. This means no single company or entity controls your data—you do. All documents are cryptographically secured, ensuring that only you can grant access for verification.</p>
+        </div>
+
+        <div class="info-section">
+             <a href="#get_started" class="rlink">
+                <div class="reg_box">
+                    <div class="symb">
+                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="17 8 12 3 7 8"></polyline><line x1="12" y1="3" x2="12" y2="15"></line></svg>
+                    </div>
+                    <div class="reg">Get Started Now</div>
+                    <div class="desc">Launch the VOID-DOCS app and take control of your digital documents today.</div>
+                </div>
+            </a>
+        </div>
+
+    </div>
+    
+    <div class = "welview">
+        <div class = "welcome" id="get_started">GET STARTED</div>
+        
+        <div class="cbox">
+            
+                <a class = "rlink" href="{{ url_for('Register')}}">
+                    <div class="reg_box reg_box2">
+                        <div class="symb symb_img">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 24 24">
+                                <path fill="currentColor" d="M11.5 16.5h1v-4h4v-1h-4v-4h-1v4h-4v1h4v4ZM4 20V4h16v16H4Zm1-1h14V5H5v14Zm0 0V5v14Z"/>
+                            </svg>
+                        </div>
+                        <div class="ctext">
+                            <div class="reg" style="font-size: 4vh;">Register</div>
+                            <div class="desc">New user? Start here.</div>
+                        </div>
+                    </div>
+                </a>
+                <a class = "rlink"  href="{{ url_for('Login')}}">
+                    <div class="reg_box reg_box2">
+                    <div class="symb symb_img">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 1024 1024">
+                            <path fill="#000000" d="M532.528 661.408c-12.512 12.496-12.513 32.752-.001 45.248c6.256 6.256 14.432 9.376 22.624 9.376s16.368-3.12 22.624-9.376l189.008-194L577.775 318.64c-12.496-12.496-32.752-12.496-45.248 0c-12.512 12.496-12.512 32.752 0 45.248l115.744 115.76H31.839c-17.68 0-32 14.336-32 32s14.32 32 32 32h618.448zM960.159 0h-576c-35.36 0-64.017 28.656-64.017 64v288h64.432V103.024c0-21.376 17.344-38.72 38.72-38.72h496.704c21.408 0 38.72 17.344 38.72 38.72l1.007 818.288c0 21.376-17.311 38.72-38.72 38.72H423.31c-21.376 0-38.72-17.344-38.72-38.72V670.944l-64.432.08V960c0 35.344 28.656 64 64.017 64h576c35.344 0 64-28.656 64-64V64c-.016-35.344-28.672-64-64.016-64z"/>
+                        </svg>
+                    </div>
+                    <div class="ctext">
+                        <div class="log" style="font-size: 4vh;">Login</div>
+                        <div class="desc">Already have an account?</div>
+                    </div>
+                </div>
+                </a>
+            </div>
+            
+        </div>
+
+    </div>
+    <script src="{{ url_for('static', filename='js/index.js') }}"></script>
+</body>
+</html>
