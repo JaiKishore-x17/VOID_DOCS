@@ -2,10 +2,12 @@ import socket
 import threading
 import time
 import json
-import sys
+
+# FIXED SERVER IP - No input needed!
+SERVER_IP = "172.16.44.187"
 
 class P2PClient:
-    def __init__(self, server_ip, node_name=None):
+    def __init__(self, server_ip=SERVER_IP, node_name=None):
         self.server_ip = server_ip
         self.server_port = 5000
         self.node_id = node_name or f"Node_{socket.gethostname()}_{int(time.time())}"
@@ -22,7 +24,7 @@ class P2PClient:
             sock.close()
             return True
         except Exception as e:
-            print(f"[ERROR] Send failed: {e}")
+            print(f"[{self.node_id}] [ERROR] Send failed: {e}")
             return False
     
     def listen(self):
@@ -39,8 +41,7 @@ class P2PClient:
                 threading.Thread(target=self.handle_broadcast, args=(conn, addr), daemon=True).start()
             except:
                 if self.is_running:
-                    print(f"[{self.node_id}] Listen error, retrying...")
-                time.sleep(1)
+                    time.sleep(1)
     
     def handle_broadcast(self, conn, addr):
         """Handle incoming broadcast message"""
@@ -69,8 +70,9 @@ class P2PClient:
             if self.send({"node_id": self.node_id, "msg": "Add_Me"}):
                 print(f"[{self.node_id}] ✅ Connected to network!")
                 return True
-            print(f"[{self.node_id}] Retry {attempt+1}/15...")
+            print(f"[{self.node_id}] 🔄 Retry {attempt+1}/15...")
             time.sleep(2)
+        print(f"[{self.node_id}] ❌ Failed to connect to server!")
         return False
     
     def heartbeat(self):
@@ -101,7 +103,6 @@ class P2PClient:
         
         # Connect to server
         if not self.first_connect():
-            print(f"[{self.node_id}] ❌ Failed to connect to server!")
             return
         
         # Start heartbeat
@@ -112,10 +113,11 @@ class P2PClient:
         
         self.is_running = False
 
+# ONE-LINE START - FIXED IP
 if __name__ == "__main__":
-    if len(sys.argv) != 2:
-        print("Usage: python client.py <server_ip>")
-        sys.exit(1)
+    print("🌐 P2P Chat Node")
+    print(f"📡 Auto-connecting to FIXED SERVER: {SERVER_IP}:5000")
+    print("=" * 50)
     
-    client = P2PClient(sys.argv[1])
+    client = P2PClient()  # Uses fixed IP automatically
     client.start()
