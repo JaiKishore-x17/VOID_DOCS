@@ -86,10 +86,12 @@ class P2PClient:
 
 # Usage
 if __name__ == "__main__":
-    client = P2PClient("172.16.44.251")  # Server IP
+    client = P2PClient("172.16.44.187")  # Server IP
     client.start()
     try:
         while True:
             time.sleep(1)
     except KeyboardInterrupt:
         client.is_running = False
+
+
