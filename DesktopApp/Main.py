@@ -1,163 +1,160 @@
-# Importing necessary modules from Flask and other files
-from flask import Flask, render_template, request, session, redirect, url_for
+from flask import Flask, render_template, request, session, redirect, url_for, jsonify
 from dontcommit import MongoDB, flask
-from pymongo import MongoClient
-from Registeration import registeration
-from Logined import logined
+from Login_Register import logined , registeration
+from werkzeug.utils import secure_filename
 import os
-from Commands import sha256_hasher
-import bson 
 
+app = Flask(__name__)
+app.secret_key = flask
 
-# Create a Flask web app
+x = MongoDB
 
-
-UPLOAD_FOLDER = 'uploads'
-os.makedirs(UPLOAD_FOLDER, exist_ok=True)  # Create folder if it doesn't exist
-app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
-
-# -------------------------------------------
-# ROUTE 1: Home Page
-# -------------------------------------------
 @app.route('/')
 def index():
     if 'user_id' in session:
-        return redirect(url_for('home'))
+        return redirect(url_for('Home'))
     else:
         return render_template('index.html')
 
+@app.route('/Index')
+def Index():
+    return render_template('index.html')
+    
 
-# -------------------------------------------
-# ROUTE 2: Login Page (GET)
-# -------------------------------------------
+@app.route('/Login_Page', methods=['POST', 'GET'])
+def Login_Page():
+    return render_template('Login.html')
 
 
+@app.route('/Register_Page', methods=['POST', 'GET'])
+def Register_Page():
+    return render_template('Register.html')
 
-# -------------------------------------------
-# ROUTE 3: Handle Login Form Submission (POST)
-# -------------------------------------------
-@app.route('/login', methods=['GET', 'POST'])
-def login():
-    # Check if the form is submitted
+
+@app.route('/Login_Admin', methods=['GET', 'POST'])
+def Login_Admin():
     if request.method == 'POST':
-        # Get data entered by the user from the form
         user_id = request.form['user_id']
         user_pass = request.form['password']
-
-        # Call the 'logined' function to check credentials
-        # It returns a message and login status (True/False)
         m = logined(user_id, user_pass, x)
         msg = m[0]
         Login_status = m[1]
 
-        # If login successful, go to Home page
         if Login_status:
             session['user_id'] = user_id
             return render_template('Home.html')
-        # If login failed, show the login page again with an error message
         else:
             return render_template('Login.html', message=msg)
     
-    # If accessed via GET (not submitting form), just show login page
     return render_template('Login.html')
 
 
-# -------------------------------------------
-# ROUTE 4: Register Page (GET)
-# -------------------------------------------
-@app.route('/Register', methods=['POST', 'GET'])
-def Register():
-    # Shows the registration form page (Register.html)
-    return render_template('Register.html')
-
-
-# -------------------------------------------
-# ROUTE 5: Handle Registration Form Submission (POST)
-# -------------------------------------------
-@app.route('/register', methods=['GET', 'POST'])
-def register():
-    message = ""  # Default message
-
-    # If user submitted the registration form
+@app.route('/Register_Admin', methods=['GET', 'POST'])
+def Register_Admin():
+    message = "" 
+    
     if request.method == 'POST':
-        # Get data from the registration form
+        
         name = request.form['name']
         user_id = request.form['user_id']
         user_pass = request.form['password']
 
-        # Call the 'registeration' function to register the user
-        # It returns a message and registration status
         m = registeration(name, user_id, user_pass, x)
         msg = m[0]
         Register_status = m[1]
 
-        # If registration successful, go to Home page
         if Register_status:
             session['user_id'] = user_id
             return render_template('Home.html')
-        # If registration failed, reload registration page with message
         else:
             return render_template('Register.html', message=msg) 
     
-    # If accessed via GET, just show the registration page
     return render_template('Register.html')
 
-@app.route('/home')
-def home():
+
+@app.route('/Home')
+def Home():
     if 'user_id' not in session:
-        return redirect(url_for('Login'))
+        return redirect(url_for('Login_Page'))
     return render_template('Home.html')
 
 
-@app.route('/upload', methods=['POST'])
-def upload():
-    if 'files[]' not in request.files:
-        return 'No files uploaded', 400
-
-    files = request.files.getlist('files[]')
-    uploaded = []
-
-    for file in files:
-        if file.filename:
-            file_data = file.read()  # Read file content as bytes
-            file_hash = sha256_hasher(file)  # Compute hash
-
-            document = {
-                'filename': file.filename,
-                'content_type': file.content_type,
-                'file_data': bson.Binary(file_data),
-                'sha256_hash': file_hash
-            }
-            client = MongoClient(x)
-            db = client["VOID-Docs"]
-            Documents = db["Documents"]
-
-            result = Documents.insert_one(document)
-            uploaded.append(str(result.inserted_id))
-
-    return f"Files stored with IDs: {', '.join(uploaded)}"
-
-@app.route("/data_list_doc", methods = ["POST", "GET"])
-def data_list_doc():
-    data = request.get_json()
-    data = (data.get('data'))
-    print(data)
+@app.route("/add_auth_user/<user_id>", methods=["GET"])
+def get_user(user_id):
+    from pymongo import MongoClient
+    
     client = MongoClient(x)
     db = client["VOID-Docs"]
-    Users_Public = db["Users_Public"]
-    Data_Set = []
-    return jsonify(Data_set)
+    User_Public = db["Users_Public"]
 
-@app.route('/logout')
-def logout():
-    session.pop('user_id', None)  # Remove user_id from session
-    return redirect(url_for('Login'))  # Redirect to login page after logout
+    user = User_Public.find_one({"ID": user_id})
+    if user is None:
+        return jsonify({"error": "User not found in database."}), 404
+
+    name = user.get("Name")
+    key = user.get("Public_Key")
+    user = {"name":name, "publicKey":key}
+    print(1  )
+    return jsonify(user)
 
 
+@app.route('/Download', methods=['POST','GET'])
+def download_file(file_id, output_folder, collection):
+    from bson import ObjectId
 
-# -------------------------------------------
-# Run the Flask web app
-# -------------------------------------------
+    try:
+        # Ensure file_id is an ObjectId
+        if isinstance(file_id, str):
+            file_id = ObjectId(file_id)
+
+        # Fetch document
+        doc = collection.find_one({'_id': file_id})
+        if not doc:
+            return "File not found in MongoDB."
+
+        filename = doc.get('filename', 'restored_file')
+        file_data = doc.get('file_data')
+
+        if not file_data:
+            return "No file data found in document."
+
+        # Save to disk
+        output_path = os.path.join(output_folder, filename)
+        with open(output_path, 'wb') as f:
+            f.write(file_data)
+
+        return f"File restored to: {output_path}"
+
+    except Exception as e:
+        return f"Error: {str(e)}"
+
+
+@app.route('/upload', methods=['POST'])
+def upload_file():
+    UPLOAD_FOLDER = 'uploads'
+    os.makedirs(UPLOAD_FOLDER, exist_ok=True)
+    app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
+
+    # "file" must match formData.append('file', ...)
+    if 'file' not in request.files:
+        return jsonify({'error': 'No file part'}), 400
+
+    f = request.files['file']
+    if f.filename == '':
+        return jsonify({'error': 'No selected file'}), 400
+
+    filename = secure_filename(f.filename)
+    save_path = os.path.join(app.config['UPLOAD_FOLDER'], filename)
+    f.save(save_path)  # or process in-memory via f.read()
+
+    return jsonify({'message': 'File uploaded successfully', 'filename': filename}), 200
+
+
+@app.route('/Logout')
+def Logout():
+    session.pop('user_id', None)
+    return redirect(url_for('Index'))
+
+
 if __name__ == '__main__':
-    # debug=True allows auto-reload when you make code changes
     app.run(debug=True)
