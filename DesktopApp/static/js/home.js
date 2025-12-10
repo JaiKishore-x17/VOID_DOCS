@@ -458,6 +458,9 @@ function triggerSuccessTick(username) {
 }
 
 
+
+
+
     // 2. Hide the issue button and show success message
     if (issueBtn) issueBtn.style.display = 'none';
     
@@ -510,7 +513,7 @@ if (issueBtn) {
             console.log('Issue OK:', data);
             
             // Trigger the success logic now that server responded
-            triggerSuccessTick();
+            
         })
         .catch(err => {
             console.error('Issue error:', err);
