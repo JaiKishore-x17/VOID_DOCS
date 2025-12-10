@@ -457,6 +457,10 @@ function triggerSuccessTick(username) {
   });
 }
 
+function triggerSuccessPrompt(){
+    alert("SUCCESSFUL !!")
+}
+
 
 
 
