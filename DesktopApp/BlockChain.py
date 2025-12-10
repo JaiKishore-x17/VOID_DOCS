@@ -8,6 +8,7 @@ Block_Data = { Admin: {admin: PublicKey},
              Time: timestamp}
 
 '''
+
 from dontcommit import MongoDB, flask
 from pymongo import MongoClient
 from Encrypt_Decrypt import sha256_hasher, decrypt_with_public_key
@@ -52,3 +53,21 @@ def verify_Block(Block_Data):
     else:
         return False
 
+def Add_Block(Block_Data):
+    
+    Block_file = open("BlockChain.txt",'r')
+    BlockChain = eval(Block_file.read())
+
+    previous_Block = BlockChain[-1]
+    Previous_Hash = sha256_hasher(previous_Block)
+    Block_No = previous_Block['Block_No']+1
+
+    if verify_Block(Block_Data) == True:
+        Block = {'Block_No': Block_No, 'Previous_Hash': Previous_Hash, 'Block': Block_Data}
+        New_Chain = BlockChain.append(Block)
+        a = open("BlockChain.txt", "w")
+        a.write(str(New_Chain))
+        a.close()
+        return "Addition of Block Successfull"
+    else:
+        return "Block does not pass verification."
