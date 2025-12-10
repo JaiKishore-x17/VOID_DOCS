@@ -61,7 +61,7 @@ VOID-DOCS is a lightweight, decentralized blockchain platform built on Python no
 | Storage |  MongoDB | Encrypted fragments + indexes |
 | Privacy | **Zero-Knowledge Proofs** | Verify without revealing |
 | AI | **Gemini** | Document insights + classification |
-| Security | RSA + SHA256 + EdDSA | End-to-end encryption |
+| Security | RSA + SHA256  | End-to-end encryption |
 
 ## **🏗️ ARCHITECTURE**
 # DATA FLOW
