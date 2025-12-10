@@ -22,7 +22,7 @@
             <div class="s2">Document Protocol System</div>
         </div>
         <div class="cbox">
-            <div class="cname">RedCloud</div>
+            <div class="cname"></div>
             <div class="clogo"></div>
         </div>
     </div>
@@ -34,8 +34,9 @@
         <div class="trbox">
             <div class="hbox">
                 <img class="home_img" src="{{ url_for('static', filename='src/home.png') }}"></img>
+            </div>
             <div class="lbox">
-                <div class="lang"></div>
+                <div class="lang">ENGLISH</div>
             </div>
             </div>
         </div>
@@ -91,10 +92,10 @@
             </div>
             <form class="" action="/Login_Admin" method="post">
                 <label for="user_id">ID Number</label>
-                <input placeholder="user ID" type="text" id="user_id" name="user_id" required>
+                <input placeholder="user ID (test: 123)" type="text" id="user_id" name="user_id" required>
 
                 <label for="password">Password</label>
-                <input placeholder="password" type="password" id="password" name="password" required>
+                <input placeholder="password (test: 123)" type="password" id="password" name="password" required>
                 <div class="sbtn_con">
                     <button type="submit">Login</button>
                 </div>
@@ -103,7 +104,5 @@
             <p class="register-link">New admin? <a href="{{ url_for('Register_Page')}}">Register here</a></p>
         </div>
     </div>
-
-    
 </body>
 </html>
