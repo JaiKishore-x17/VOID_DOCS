@@ -167,5 +167,5 @@ Our backend uses <b>Flask APIs</b> for logic and <b>MongoDB</b> for structured m
 | **Layer 4** | **ZKP Privacy** | Prove ownership **without revealing** | **Data leaks** | **3s** |
 | **Layer 5** | **Audit Trail** | Public blockchain explorer | **Court disputes** | **Instant** |
 
-**Total: 100s → 98.7% accuracy (Telangana)** | **Copy-paste ready!** 🔥 [file:79]
+
 
