@@ -10,6 +10,24 @@
     <link href="https://fonts.googleapis.com/css2?family=Archivo:ital,wght@0,100..900;1,100..900&family=Asimovian&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Outfit:wght@100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Share+Tech&display=swap" rel="stylesheet">
 </head>
 <body>
+
+    <div class="sign_box" id="sign_box">
+        <div class="close_box">
+            <div class="close" onclick="closesign()">x</div>
+        </div>
+        <div class="inbox_txt">SIGN-IN INBOX</div>
+        <div class="req_box">
+            <div class="reqb">
+                <div class="p_txt">Pending</div>
+                <div class="slist" id="slist">
+                    
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
     <div class="top_bar">
         <div class="logo">
             <span class="vo">VO</span><span class="id">ID</span><span class="docs">-DOCS</span>
@@ -29,8 +47,8 @@
         
         <div class="cbox">
             
-            <a class="rlink" href="">
-                <div class="reg_box">
+            
+                <div class="reg_box" onclick="opensign()">
                     <div class="symb">
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
                             <path d="M19 19H5V5h9V3H5c-1.11 0-2 .9-2 2v14c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2v-9h-2v9Zm-6.21-11.71L11 9.07l1.41-1.41l1.79 1.79l4.24-4.24l1.41 1.41l-5.66 5.66Z"/>
@@ -40,9 +58,9 @@
                         <div class="reg">Document Signing</div>
                     </div>
                 </div>
-            </a>
+        
             
-            <a class="rlink" href="">
+            
                 <div class="reg_box">
                     <div class="symb">
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
@@ -54,7 +72,7 @@
                         <div class="reg">Document Verification</div>
                     </div>
                 </div>
-            </a>
+            
             
         </div>
         
